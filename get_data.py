@@ -5,8 +5,10 @@ from time import sleep
 import json
 
 busnum = 3
+address = 0x40
 max_expected_amps = 20
 log_level = logging.CRITICAL
+shunt_ohms=0.002
 
 def read():
     data = {
@@ -20,14 +22,15 @@ def read():
 
 if __name__ == "__main__":
     ina = INA226(
+	address=address,
         busnum=busnum,
         max_expected_amps=max_expected_amps,
-        log_level=log_level
+        log_level=log_level,
+        shunt_ohms=shunt_ohms
     )
 
     ina.configure()
-    ina.set_low_battery(5)
-    ina.wake(3)
+    #ina.set_low_battery(5)
     sleep(0.2)
     ina.wake(3)
     while 1:
