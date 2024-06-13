@@ -9,7 +9,7 @@ address = 0x40
 max_expected_amps = 20
 log_level = logging.CRITICAL
 shunt_ohms=0.002
-iterations = 10
+iterations = 1
 
 if __name__ == "__main__":
     ina = INA226(
@@ -20,7 +20,7 @@ if __name__ == "__main__":
         shunt_ohms=shunt_ohms
     )
 
-    ina.configure()
+    ina.configure(avg_mode=2)
     #ina.set_low_battery(5)
     sleep(0.1)
     measurements = []
