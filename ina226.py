@@ -4,9 +4,10 @@ Supports the Raspberry Pi using the I2C bus.
 """
 import logging
 from math import trunc
-# from smbus import SMBus
-from smbus2 import SMBus
-
+try:
+    from smbus2 import SMBus
+except ImportError:
+    from smbus import SMBus
 
 def to_bytes(register_value):
     return [(register_value >> 8) & 0xFF, register_value & 0xFF]
